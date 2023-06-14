@@ -1,6 +1,6 @@
 <template>
   <div class="topTitle">
-    <h2 class="title2">{{ "模型: Claude" }}</h2>
+    <h2 class="title2">{{ "模型: Better同学大数据模型" }}</h2>
   </div>
 </template>
 

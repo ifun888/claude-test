@@ -82,7 +82,7 @@
             <div class="answerList" :style="{ paddingBottom: '16px' }">
               <img class="listImg" src="/logo1.png" alt="" />
               <div class="botListText">
-                <div>_Typing…_</div>
+                <div>BetterAi正在思考中......</div>
               </div>
             </div>
           </div>
@@ -90,7 +90,7 @@
       </div>
       <div v-show="!list.length" class="content-box cancel-style">
         <div class="begintitle">
-          <h1>Chat Bot</h1>
+          <h1>BetterAi助手</h1>
         </div>
         <div v-show="isMobile" class="exhibition cancel-style mobile">
           <div class="witem">
