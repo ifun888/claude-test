@@ -352,7 +352,7 @@ async function send() {
         },
         body: JSON.stringify(data),
       };
-      const response = await fetch("http://139.199.230.252:8080/chain", option);
+      const response = await fetch("http://zhiyuan.liuzhuohui.vip:8080/chain", option);
 
       loading.value = true;
       iscancel.value = true;
