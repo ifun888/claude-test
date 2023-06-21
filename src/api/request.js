@@ -1,7 +1,8 @@
 import serviceAxios from "./index";
 // 统一管理api
 const user = {
-  sendApi: "/guangshi-claude" ,
+  // sendApi: "/guangshi-claude" ,
+  sendApi: "/chain" ,
 }
 
 //发送信息

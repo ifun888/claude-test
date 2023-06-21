@@ -47,7 +47,7 @@
               />
               <img
                 class="listImg"
-                src="/logo1.png"
+                src="/logo2.png"
                 alt=""
                 v-show="item.currentType === 'bot'"
               />
@@ -80,9 +80,9 @@
           </div>
           <div v-show="loading" class="listItemA">
             <div class="answerList" :style="{ paddingBottom: '16px' }">
-              <img class="listImg" src="/logo1.png" alt="" />
+              <img class="listImg" src="/logo2.png" alt="" />
               <div class="botListText">
-                <div>BetterAi正在思考中......</div>
+                <div>BetterTeen正在思考中......</div>
               </div>
             </div>
           </div>
@@ -90,41 +90,47 @@
       </div>
       <div v-show="!list.length" class="content-box cancel-style">
         <div class="begintitle">
-          <h1>BetterAi助手</h1>
+          <div>
+            <img class="seo_image" src="/qr_code_better.jpg" alt="" />
+          </div>
+          
+          <h1>高考志愿填报小助手</h1>
+          <h2>技术支持：BetterTeen(微信公众号)</h2>
+          
         </div>
         <div v-show="isMobile" class="exhibition cancel-style mobile">
           <div class="witem">
             <el-icon :style="{ fontSize: '25px' }"><MagicStick /></el-icon>
-            <h3 class="title">功能</h3>
-            <p>还记得用户在对话中早些时候说的话</p>
-            <p>允许用户提供后续更正</p>
-            <p>接受过拒绝不当请求的培训</p>
+            <h3 class="title">分数线</h3>
+            <p>广师大2022年机械电子工程最低录取排位是多少？</p>
+            <p>广师大2021年工业设计专业最高录取分数线是多少</p>
+            <p>广师大2020年汉语文学专业最低录取分数线是？</p>
           </div>
           <div class="witem">
             <el-icon :style="{ fontSize: '25px' }"><Sunny /></el-icon>
-            <h3 class="title">高效工作</h3>
-            <p @click="handleHomeQuestion(2)">先有鸡蛋还是有母鸡 →</p>
-            <p @click="handleHomeQuestion(5)">
-              老婆和母亲同时落入湖中,先救谁? →
+            <h3 class="title">排位问题</h3>
+            <p @click="handleHomeQuestion(2)">
+              广师大2021年人工智能专业招生人数是？ →
             </p>
-            <p @click="handleHomeQuestion(8)">会有世界末日吗? →</p>
+            <p @click="handleHomeQuestion(5)">人工智能专业课程有哪些？</p>
+            <p @click="handleHomeQuestion(8)">广师大汉语言文学(师范)专业近三年的排名，如果我排名在250000，可不可以进广师大？</p>
           </div>
           <div class="witem">
             <el-icon :style="{ fontSize: '25px' }"><Warning /></el-icon>
             <h3 class="title">限制</h3>
-            <p>偶尔可能会生成错误的信息</p>
-            <p>偶尔可能会产生有害的指令或有偏见的内容</p>
-            <p>对2021年后的世界和事件的了解有限</p>
+            <p>无法提供其他学校的专业录取情况</p>
+            <p>只提供2020年~2022年的专业录取情况</p>
+            <p>对2023年后的世界和事件的了解有限</p>
           </div>
         </div>
         <div v-show="!isMobile" class="exhibition">
           <div class="witem">
             <el-icon :style="{ fontSize: '30px' }"><MagicStick /></el-icon>
-            <h3 class="title">功能</h3>
+            <h3 class="title">分数线</h3>
           </div>
           <div class="witem">
             <el-icon :style="{ fontSize: '30px' }"><Sunny /></el-icon>
-            <h3 class="title">高效工作</h3>
+            <h3 class="title">排位问题</h3>
           </div>
 
           <div class="witem">
@@ -171,7 +177,7 @@
         </div>
         <div class="message">
           <p>
-            我是一名智能助理，我可以回答各种问题、提供服务和建议，帮助用户更高效地完成任务和解决问题。
+            我是一名高考志愿填报小助手，我可以各种关于广师大的专业录取情况，帮助考生更好地填报志愿。
           </p>
         </div>
       </div>
@@ -238,6 +244,69 @@ function isMobileFun() {
   }
 }
 
+// //发送消息
+// async function send() {
+//   const message = question.value;
+//   //空白禁止发送
+//   if (message.trim() == "") {
+//     ElMessage({
+//       showClose: true,
+//       message: "输入你的问题",
+//       type: "error",
+//     });
+//     return;
+//   }
+//   nextTick(() => {
+//     list.value.push({
+//       text: message,
+//       currentType: "user",
+//       avatar: "/avatar.jpeg",
+//     });
+//     list.value.push({
+//       text: "",
+//       currentType: "bot",
+//       avatar: "/logo.jpg",
+//     });
+//   });
+//   //开启键盘定制
+//   setScreen();
+//   question.value = "";
+//   loading.value = true;
+//   iscancel.value = true;
+
+//   try {
+//     const obj = { message };
+//     obj.parentMessageId = parentMessageId.value;
+//     sendInfo({
+//       data: obj,
+//       signal: controller.value.signal,
+//       responseType: "text",
+//       onDownloadProgress: downloadPro,
+//     })
+//       .then(() => {})
+//       .catch(function (thrown) {
+//         iscancel.value = false;
+//         isForbidScroll.value = false;
+//         if (axios.isCancel(thrown)) {
+//           console.log("Request canceled", thrown.message);
+//         }
+//       })
+//       .finally(() => {
+//         sendInfolater();
+//       });
+//     // 返回 id 并保存
+//   } catch (error) {
+//     console.log(error);
+//     loading.value = false;
+//     list.value.push({
+//       text: "出错了，请重试！",
+//       avatar: "/logo.jpg",
+//     });
+//     setScreen();
+//     return;
+//   }
+// }
+
 //发送消息
 async function send() {
   const message = question.value;
@@ -268,65 +337,171 @@ async function send() {
   loading.value = true;
   iscancel.value = true;
 
-  try {
-    const obj = { message };
-    obj.parentMessageId = parentMessageId.value;
-    sendInfo({
-      data: obj,
-      signal: controller.value.signal,
-      responseType: "text",
-      onDownloadProgress: downloadPro,
-    })
-      .then(() => {})
-      .catch(function (thrown) {
-        iscancel.value = false;
-        isForbidScroll.value = false;
-        if (axios.isCancel(thrown)) {
-          console.log("Request canceled", thrown.message);
+  let result_text = "";
+
+  //
+  const obj = { message };
+  (async function () {
+    // wrap in async function to use await
+    try {
+      const data = { message: message };
+      const option = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      };
+      const response = await fetch("http://139.199.230.252:8080/chain", option);
+
+      loading.value = true;
+      iscancel.value = true;
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let errText = "";
+      let text = "";
+
+      while (true) {
+        if (iscancel.value == false) {
+          // console.log('暂停生成');
+          break;
         }
-      })
-      .finally(() => {
-        sendInfolater();
-      });
-    // 返回 id 并保存
-  } catch (error) {
-    console.log(error);
-    loading.value = false;
-    list.value.push({
-      text: "出错了，请重试！",
-      avatar: "/logo.jpg",
-    });
-    setScreen();
-    return;
-  }
+        const { done, value } = await reader.read();
+        if (done) {
+          break;
+        }
+        const decoded = decoder.decode(value, { stream: true });
+        // console.log(decoded);
+        const strArr = (errText + decoded).split("data: ");
+        // console.log("解析字符", strArr)
+        if (strArr) {
+          for (let i = 0; i < strArr.length; i++) {
+            let json = {};
+            console.log(strArr[i], strArr[i].lastIndexOf("[DONE]") == -1);
+            // console.log(strArr[i].lastIndexOf("[DONE]") !== -1);
+            if (strArr[i]) {
+              try {
+                json = JSON.parse(strArr[i]);
+                //console.log(json,json.message);
+                if (json.message) {
+                  text = json.message;
+
+                  // console.log("result",text);
+                  // outputEl.innerText += text;
+                  if (text.indexOf("```") !== -1) {
+                    result_text += md.render(text); //append text
+                  } else {
+                    result_text += text;
+                  }
+                  // console.log(result_text)
+                  list.value[list.value.length - 1].text = result_text;
+                  loading.value = false;
+                  setScreen();
+                }
+                errText = "";
+              } catch (e) {
+                // console.log("出错", strArr[i]);
+                errText = strArr[i];
+                if (strArr[i].lastIndexOf("[DONE]") !== -1) {
+                  // console.log("结束生成");
+                  //停止生成
+                  iscancel.value = false;
+                  isForbidScroll.value = false;
+                  break;
+                }
+                break;
+              }
+            } else {
+              // console.log("error")
+              // break;
+            }
+          }
+        }
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  })();
 }
 
-//流式处理
-function downloadPro(progressEvent) {
-  const xhr = progressEvent.event.target;
-  let { responseText } = xhr;
-  const lastIndex = responseText.lastIndexOf("⭐");
-  let chunk = responseText;
+// //流式处理
+// function downloadPro(progressEvent) {
+//   const xhr = progressEvent.event.target;
+//   let { responseText } = xhr;
+//   // const lastIndex = responseText.lastIndexOf("⭐");
+//   let chunk = responseText;
 
-  if (lastIndex !== -1) {
-    chunk = responseText.substring(lastIndex);
-    chunk = chunk.replace("⭐", " ")
-  }
-  //限制接口
-  console.log("chunk", chunk);
+//   // if (lastIndex !== -1) {
+//   //   chunk = responseText.substring(lastIndex);
+//   //   chunk = chunk.replace("⭐", " ")
+//   // }
+//   //限制接口
+//   // console.log("chunk", chunk);
 
-  const parts = chunk.split("--!");
+//   const strArr = chunk.split("data: ");
+//   let errText=""
+//   let text=""
+//   if (strArr) {
+//     for (let i = 0; i < strArr.length; i++) {
+//       let json = {};
+//       if (strArr[i] && strArr[i] !== "[DONE]") {
+//         try {
+//           json = JSON.parse(strArr[i]);
+//           //console.log(json,json.message);
+//           if (json.message) {
+//             text = json.message;
+//             console.log("result",text);
+//             // outputEl.innerText += text;
+//           }
+//           errText = "";
+//         } catch (e) {
+//           console.log("出错", strArr[i]);
+//           errText = strArr[i];
+//         }
+//       }
+//     }
+//   }
 
-  parentMessageId.value = parts[1];
-  console.log('parts[0]', parts[0])
-  if (parts[0].indexOf("```") !== -1) {
-    list.value[list.value.length - 1].text = md.render(parts[0]);
-  } else {
-    list.value[list.value.length - 1].text = parts[0];
-  }
-  loading.value = false;
-  setScreen();
-}
+// parentMessageId.value = parts[1];
+// // console.log('parts[0]', parts[0])
+// if (parts[0].indexOf("```") !== -1) {
+//   list.value[list.value.length - 1].text = md.render(parts[0]);
+// } else {
+//   list.value[list.value.length - 1].text = parts[0];
+
+// }
+// loading.value = false;
+// setScreen();
+// }
+
+// //流式处理
+// function downloadPro(progressEvent) {
+//   const xhr = progressEvent.event.target;
+//   let { responseText } = xhr;
+//   const lastIndex = responseText.lastIndexOf("⭐");
+//   let chunk = responseText;
+
+//   if (lastIndex !== -1) {
+//     chunk = responseText.substring(lastIndex);
+//     chunk = chunk.replace("⭐", " ")
+//   }
+//   //限制接口
+//   console.log("chunk", chunk);
+
+//   const parts = chunk.split("--!");
+
+//   parentMessageId.value = parts[1];
+//   // console.log('parts[0]', parts[0])
+//   if (parts[0].indexOf("```") !== -1) {
+//     list.value[list.value.length - 1].text = md.render(parts[0]);
+//   } else {
+//     list.value[list.value.length - 1].text = parts[0];
+
+//   }
+//   loading.value = false;
+//   setScreen();
+// }
 
 //发送消息适配PC或phone
 function handleEnter(e) {
@@ -357,7 +532,6 @@ function handleCancel() {
 function setScreen(keyboardHeight = 0) {
   nextTick(() => {
     setTimeout(() => {
-      
       const scrollHeight = contentListRef.value?.scrollHeight || 0;
       // const clientHeight = contentListRef.value.clientHeight;
       contentListRef.value.scrollTop = scrollHeight + keyboardHeight;
@@ -505,6 +679,16 @@ function sendInfolater() {
   /* background-color: red; */
 }
 
+//ttttt 2023-06-21
+.seo_image {
+  display: block; /* 确保img标签是块级元素 */
+  margin: 0 auto; /* 将img标签水平居中 */
+  padding-bottom: 10px;
+  width: 200px; /* 设置宽度为100像素 */
+  height: 200px; /* 设置高度为100像素 */
+  object-fit: contain; /* 保持图片比例，填充整个容器 */
+}
+
 .problemList {
   position: relative;
   max-width: 768px;
@@ -527,6 +711,9 @@ function sendInfolater() {
     /* width: 29px; */
     /* height: 29px; */
   }
+
+
+
   .listText {
     position: relative;
     padding: 7px 0px 0px 1px;
@@ -765,9 +952,18 @@ function sendInfolater() {
 }
 .begintitle h1 {
   /* padding: 0 33px 23px; */
-  margin-bottom: 33px;
+  margin-bottom: 10px;
   font-size: 28px;
   font-weight: bold;
+  text-align: center;
+}
+
+
+.begintitle h2 {
+  /* padding: 0 33px 23px; */
+  margin-bottom: 33px;
+  font-size: 20px;
+  // font-weight: bold;
   text-align: center;
 }
 
